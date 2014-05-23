@@ -6,9 +6,26 @@ class cartTest extends PHPUnit_Framework_Testcase {
     public function testPhpUnitSanityCheck() {
         $this->assertTrue(true);
     }
-    
+    public function setUp(){
+        $this->cart = new Cart();
+    }
     public function test_NewCart_GivenNoParameters_ReturnsEmptyCart(){
-        $cart = new Cart();
-        $this->assertEquals(0, count($cart->lines));
+        $cartLineCount = count($this->cart->lines);
+        $this->assertEquals(0, $cartLineCount);
+    }
+    public function test_SubTotal_EmptyCart_ReturnsZero(){
+        $cart = $this->cart;
+        $this->assertEquals(0, $cart->subtotal());
+    }
+    public function test_AddItem_ValidItemAnyQuantity_BasketLinesEqualsOne(){
+        $cart = $this->cart;
+        $cart->addItem($this->getValidItem());
+        $this->assertEquals(1, count($cart->lines));
+    }
+    
+    
+    
+    private function getValidItem(){
+        return new Item("Item Name", "4.99", "2");
     }
 }
