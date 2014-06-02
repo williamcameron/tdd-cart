@@ -23,9 +23,19 @@ class cartTest extends PHPUnit_Framework_Testcase {
         $this->assertEquals(1, count($cart->lines));
     }
     
+    public function test_ItemQuantity_ValidItemWithQuantity1_ReturnsQuantity1(){
+        $cart = $this->cart;
+        $cart->addItem($this->getValidItem());
+        $this->assertEquals(1, $cart->itemQuantity());
+    }
+    public function test_ItemQuantity_ValidItemWithQuantity2_ReturnsQuantity2(){
+        $cart = $this->cart;
+        $cart->addItem($this->getValidItem(2));
+        $this->assertEquals(2, $cart->itemQuantity());
+    }
     
     
-    private function getValidItem(){
-        return new Item("Item Name", "4.99", "2");
+    private function getValidItem($qty=1){
+        return new Item("Item Name", "4.99", $qty);
     }
 }
