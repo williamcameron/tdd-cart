@@ -10,6 +10,11 @@ class Cart {
     private $subtotal;
     
     public function subtotal(){
+        $this->subtotal = 0;
+        foreach($this->lines as $line){
+            $this->subtotal += $line->quantity * $line->price;
+        }
+        
         return $this->subtotal;
     }
     public function addItem(Item $item){

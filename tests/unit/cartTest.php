@@ -33,6 +33,17 @@ class cartTest extends PHPUnit_Framework_Testcase {
         $cart->addItem($this->getValidItem(2));
         $this->assertEquals(2, $cart->itemQuantity());
     }
+
+    public function test_SubTotal_With1ItemQuantity1_ReturnsCorrectAmount(){
+        $cart = $this->cart;
+        $cart->addItem($this->getValidItem());
+        $this->assertEquals(4.99, $cart->subtotal());
+    }
+    public function test_SubTotal_With1ItemQuantity2_ReturnsCorrectAmount(){
+        $cart = $this->cart;
+        $cart->addItem($this->getValidItem(2));
+        $this->assertEquals(9.98, $cart->subtotal());
+    }
     
     
     private function getValidItem($qty=1){
