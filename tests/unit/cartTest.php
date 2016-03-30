@@ -1,5 +1,5 @@
 <?php
-    include dirname(__FILE__)."/../../system/cart.php";
+    include dirname(__FILE__)."/../../system/autoload.php";
     
 class cartTest extends PHPUnit_Framework_Testcase {
 
